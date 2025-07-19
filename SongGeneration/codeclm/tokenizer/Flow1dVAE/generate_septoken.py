@@ -98,17 +98,17 @@ class Tango:
         else:
             main_weights = torch.load(model_path, map_location=device)
         self.model.load_state_dict(main_weights, strict=False)
-        print ("Successfully loaded checkpoint from:", model_path)
+        #print ("Successfully loaded checkpoint from:", model_path)
         
         self.model.eval()
         self.model.init_device_dtype(torch.device(device), torch.float32)
-        print("scaling factor: ", self.model.normfeat.std)
+        #print("scaling factor: ", self.model.normfeat.std)
         
         # self.scheduler = DDIMScheduler.from_pretrained( \
         #     scheduler_name, subfolder="scheduler")
         # self.scheduler = DDPMScheduler.from_pretrained( \
         #     scheduler_name, subfolder="scheduler")
-        print("Successfully loaded inference scheduler from {}".format(scheduler_name))
+        #print("Successfully loaded inference scheduler from {}".format(scheduler_name))
 
 
     @torch.no_grad()
@@ -188,7 +188,7 @@ class Tango:
         first_latent_codes_length = 0
 
 
-        if(isinstance(prompt_vocal, torch.Tensor)):
+        if (isinstance(prompt_vocal, torch.Tensor)) and (isinstance(prompt_bgm, torch.Tensor)):
             # prepare prompt
             prompt_vocal = prompt_vocal.to(self.device)
             prompt_bgm = prompt_bgm.to(self.device)
