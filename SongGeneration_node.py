@@ -36,7 +36,9 @@ class SongGeneration_Stage1:
         return {
             "required": {
                 "demucs_pt":  (["none"] + [i for i in folder_paths.get_filename_list("SongGeneration") if i.endswith(".pth")],),
-                "auto_prompt_audio_type": (auto_prompt_type,),           
+                "auto_prompt_audio_type": (auto_prompt_type,),  
+                "gen_type": (["left blank","bgm","vocal",],),         
+
             },
              "optional": {
                 "audio": ("AUDIO",),
@@ -48,7 +50,7 @@ class SongGeneration_Stage1:
     FUNCTION = "loader_main"
     CATEGORY = "SongGeneration"
 
-    def loader_main(self, demucs_pt,auto_prompt_audio_type,**kwargs):
+    def loader_main(self, demucs_pt,auto_prompt_audio_type,gen_type,**kwargs):
         audio=kwargs.get("audio", None)
         if audio is not None:
             prompt_audio_path = os.path.join(folder_paths.get_input_directory(), f"audio_{time.strftime('%m%d%H%S')}_temp.wav")
@@ -70,7 +72,7 @@ class SongGeneration_Stage1:
         dm_config_path=os.path.join(current_node_path, "SongGeneration/third_party/demucs/ckpt/htdemucs.yaml")
         Weigths_Path=os.path.join(SongGeneration_Weigths_Path, "ckpt")
         
-        item,max_duration,cfg=pre_data(Weigths_Path,dm_model_path,dm_config_path,folder_paths.get_output_directory(),prompt_audio_path,auto_prompt_audio_type)
+        item,max_duration,cfg=pre_data(Weigths_Path,dm_model_path,dm_config_path,folder_paths.get_output_directory(),prompt_audio_path,auto_prompt_audio_type,gen_type)
        
 
         gc_clear()
