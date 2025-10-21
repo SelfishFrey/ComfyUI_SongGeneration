@@ -172,7 +172,7 @@ def infer_stage2(item,audiolm,max_duration,lyric,descriptions,cfg_coef = 1.5, te
     # checkpoint = torch.load(ckpt_path, map_location='cpu')
     # audiolm_state_dict = {k.replace('audiolm.', ''): v for k, v in checkpoint.items() if k.startswith('audiolm')}
     # audiolm.load_state_dict(audiolm_state_dict, strict=False)
-    audiolm=audiolm.cuda().to(torch.float16)
+    audiolm=audiolm.to(torch.float16).cuda()
     torch.cuda.empty_cache()
     model = CodecLM(name = "tmp",
         lm = audiolm,
