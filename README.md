@@ -2,6 +2,7 @@
  [SongGeneration](https://github.com/tencent-ailab/SongGeneration):High-Quality Song Generation with Multi-Preference Alignment (SOTA),you can try VRAM>12G
 
 # Update
+* 11/22 修复入参顺序颠倒的错误，修复一个找很久没找到的print，并修复其模块导入问题
 * 10/23 同步官方代码，删除fairseq库，已无安装难度； 
 * 10/21同步官方代码，精简模型加载，删除hubert模型，优化lm模型加载顺序，避免转移到显存时峰值OOM；  
 * 10/18  修改加载流程，支持最新的full ，new，large模型，large模型12GVram可能会OOM，修复高版本transformer 的函数错误/Modify the loading process to support the latest full, new, and large models, and fix function errors in higher versions of transformers   
