@@ -89,7 +89,7 @@ def build_model(Weigths_Path,infer_model_path):
     cfg.conditioners.type_info.QwTextTokenizer.token_path=os.path.join(current_node_path,"SongGeneration/third_party/Qwen2-7B")
 
     audiolm = builders.get_lm_model(cfg)
-    checkpoint = torch.load(infer_model_path, map_location='cpu')
+    checkpoint = torch.load(infer_model_path, map_location='cpu',weights_only=False)
     audiolm_state_dict = {k.replace('audiolm.', ''): v for k, v in checkpoint.items() if k.startswith('audiolm')}
     audiolm.load_state_dict(audiolm_state_dict, strict=False)
     audiolm = audiolm.eval()
@@ -282,6 +282,7 @@ def song_infer_lowram(seperate_tokenizer,separator,audio_tokenizer,prompt_pt_pat
         gc.collect()
         
     elif auto_prompt_audio_type:
+        print("auto_prompt_audio_type:",auto_prompt_audio_type) 
         assert  prompt_pt_path is not None ,"prompt模型不能为空,need prmmpt  model"
         auto_prompt = torch.load(prompt_pt_path,weights_only=False)
         #assert item["auto_prompt_audio_type"] in auto_prompt_type, f"auto_prompt_audio_type {item['auto_prompt_audio_type']} not found"
