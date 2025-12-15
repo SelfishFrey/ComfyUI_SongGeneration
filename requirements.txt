@@ -17,9 +17,7 @@ alias-free-torch
 # astunparse==1.6.3
 # async-timeout==4.0.3
 # attrs==23.1.0
-audiocraft
 #audioread==3.0.1
-av
 # backcall==0.2.0
 # beartype==0.18.5
 # bitarray==2.9.2
