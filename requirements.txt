@@ -52,8 +52,6 @@ colorlog
 # decord==0.6.0
 # deepspeed==0.14.0
 # demucs==4.0.1
-descript-audio-codec
-descript-audiotools
 diffusers
 # dill==0.3.8
 # Distance==0.1.3
